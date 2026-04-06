@@ -6,6 +6,23 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { jsPDF } from 'jspdf';
 import { 
+  db, 
+  auth, 
+  googleProvider, 
+  collection, 
+  addDoc, 
+  updateDoc, 
+  deleteDoc, 
+  doc, 
+  onSnapshot, 
+  query, 
+  orderBy, 
+  signInWithPopup, 
+  signOut,
+  OperationType,
+  handleFirestoreError
+} from './firebase';
+import { 
   Phone, 
   Calendar, 
   MapPin, 
@@ -219,17 +236,38 @@ export default function App() {
   const [editingApt, setEditingApt] = useState<any>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [deletingAptId, setDeletingAptId] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [isAuthReady, setIsAuthReady] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('meera_appointments');
-    if (saved) {
-      try {
-        setAppointments(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to load appointments", e);
-      }
-    }
+    const unsubscribe = auth.onAuthStateChanged((u) => {
+      setUser(u);
+      setIsAuthReady(true);
+    });
+    return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (!isAdminView || !user || user.email !== "niteshkumar9128ku@gmail.com") {
+      // If not admin view or not logged in as admin, we don't need to sync all appointments
+      // But we might want to show the user their own appointments? 
+      // For now, let's just sync everything if in admin view
+      if (!isAdminView) return;
+    }
+
+    const q = query(collection(db, 'appointments'), orderBy('createdAt', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const apts = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setAppointments(apts);
+    }, (error) => {
+      handleFirestoreError(error, OperationType.LIST, 'appointments');
+    });
+
+    return () => unsubscribe();
+  }, [isAdminView, user]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -269,13 +307,12 @@ export default function App() {
     setIsMenuOpen(false);
   };
 
-  const handleAppointmentSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleAppointmentSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
     
     const formData = new FormData(e.currentTarget);
     const appointmentData = {
-      id: Date.now().toString(),
       name: formData.get('name') as string,
       phone: formData.get('phone') as string,
       service: formData.get('service') as string,
@@ -284,20 +321,21 @@ export default function App() {
       age: formData.get('age') as string,
       gender: formData.get('gender') as string,
       address: formData.get('address') as string,
-      createdAt: new Date().toLocaleString()
+      createdAt: new Date().toISOString() // Use ISO for better sorting
     };
 
-    const updated = [appointmentData, ...appointments];
-    setAppointments(updated);
-    localStorage.setItem('meera_appointments', JSON.stringify(updated));
+    try {
+      await addDoc(collection(db, 'appointments'), appointmentData);
+      
+      // Generate PDF
+      generateReceipt(appointmentData);
 
-    // Generate PDF
-    generateReceipt(appointmentData);
-
-    setTimeout(() => {
       setFormStatus('success');
       setTimeout(() => setFormStatus('idle'), 5000);
-    }, 1500);
+    } catch (error) {
+      handleFirestoreError(error, OperationType.CREATE, 'appointments');
+      setFormStatus('idle');
+    }
   };
 
   const generateReceipt = (data: any) => {
@@ -458,37 +496,49 @@ export default function App() {
     doc.save(`Meera_Dental_Appointment_${data.name}.pdf`);
   };
 
-  const handleUpdateApt = (e: FormEvent<HTMLFormElement>) => {
+  const handleUpdateApt = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const updatedApt = {
-      ...editingApt,
-      diagnosis: formData.get('diagnosis'),
-      medicines: formData.get('medicines'),
-      procedure: formData.get('procedure'),
-      advice: formData.get('advice'),
-      followUp: formData.get('followUp'),
-      toothNo: formData.get('toothNo'),
-      treatmentPlanned: formData.get('treatmentPlanned'),
-      nextVisit: formData.get('nextVisit'),
-      imaging: formData.get('imaging'),
+    const updatedData = {
+      diagnosis: formData.get('diagnosis') as string || "",
+      medicines: formData.get('medicines') as string || "",
+      procedure: formData.get('procedure') as string || "",
+      advice: formData.get('advice') as string || "",
+      followUp: formData.get('followUp') as string || "",
+      toothNo: formData.get('toothNo') as string || "",
+      treatmentPlanned: formData.get('treatmentPlanned') as string || "",
+      nextVisit: formData.get('nextVisit') as string || "",
+      imaging: formData.get('imaging') as string || "",
     };
 
-    const updatedList = appointments.map(a => a.id === editingApt.id ? updatedApt : a);
-    setAppointments(updatedList);
-    localStorage.setItem('meera_appointments', JSON.stringify(updatedList));
-    setIsEditModalOpen(false);
-    setEditingApt(null);
+    try {
+      const aptRef = doc(db, 'appointments', editingApt.id);
+      await updateDoc(aptRef, updatedData);
+      setIsEditModalOpen(false);
+      setEditingApt(null);
+    } catch (error) {
+      handleFirestoreError(error, OperationType.UPDATE, `appointments/${editingApt.id}`);
+    }
   };
 
-  const handleDeleteApt = (id: string) => {
-    const updatedList = appointments.filter(a => a.id !== id);
-    setAppointments(updatedList);
-    localStorage.setItem('meera_appointments', JSON.stringify(updatedList));
-    setDeletingAptId(null);
+  const handleDeleteApt = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'appointments', id));
+      setDeletingAptId(null);
+    } catch (error) {
+      handleFirestoreError(error, OperationType.DELETE, `appointments/${id}`);
+    }
   };
 
-  const handleAdminLogin = () => {
+  const handleAdminLogin = async () => {
+    if (!user || user.email !== "niteshkumar9128ku@gmail.com") {
+      try {
+        await signInWithPopup(auth, googleProvider);
+      } catch (error) {
+        console.error("Login failed", error);
+        return;
+      }
+    }
     setIsLoginModalOpen(true);
     setLoginError(false);
     setLoginPassword('');
@@ -744,10 +794,13 @@ export default function App() {
                     Cancel
                   </button>
                   <button 
-                    onClick={() => {
+                    onClick={async () => {
                       if (deletingAptId === 'all') {
-                        setAppointments([]);
-                        localStorage.removeItem('meera_appointments');
+                        // Batch delete is complex in Firestore, let's just delete one by one for simplicity in this demo
+                        // or just clear the local state if we want to be safe
+                        for (const apt of appointments) {
+                          await deleteDoc(doc(db, 'appointments', apt.id));
+                        }
                         setDeletingAptId(null);
                       } else {
                         handleDeleteApt(deletingAptId);

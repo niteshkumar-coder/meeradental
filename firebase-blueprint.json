@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "Appointment": {
+      "title": "Appointment",
+      "description": "A dental appointment booking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "age": { "type": "string" },
+        "gender": { "type": "string" },
+        "address": { "type": "string" },
+        "service": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "diagnosis": { "type": "string" },
+        "medicines": { "type": "string" },
+        "procedure": { "type": "string" },
+        "advice": { "type": "string" },
+        "followUp": { "type": "string" },
+        "toothNo": { "type": "string" },
+        "treatmentPlanned": { "type": "string" },
+        "nextVisit": { "type": "string" },
+        "imaging": { "type": "string" }
+      },
+      "required": ["name", "phone", "date", "time"]
+    }
+  },
+  "firestore": {
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Collection of all patient appointments"
+    }
+  }
+}
