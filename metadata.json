@@ -1,0 +1,7 @@
+{
+  "name": "Meera Dental - Best Dental Clinic in Patna",
+  "description": "Meera Dental offers premium dental care in Patna. Led by Dr. Sandeep Singh (BDS, MDS), we specialize in Orthodontics, Implants, and Root Canal Treatments with 15+ years of experience.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
