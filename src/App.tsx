@@ -17,6 +17,8 @@ import {
   onSnapshot, 
   query, 
   orderBy, 
+  signInWithPopup,
+  signOut,
   signInAnonymously,
   OperationType,
   handleFirestoreError
@@ -554,17 +556,25 @@ export default function App() {
 
   const submitLogin = async (e: FormEvent) => {
     e.preventDefault();
-    if (loginPassword === "Meera@12Meera") {
+    const trimmedPassword = loginPassword.trim();
+    
+    if (trimmedPassword === "Meera@12Meera") {
       try {
-        // Sign in anonymously to allow Firestore access without Google account
-        if (!user) {
-          await signInAnonymously(auth);
+        // Try to sign in anonymously to allow Firestore access
+        // If this fails, we still show the admin view but log the error
+        try {
+          if (!user) {
+            await signInAnonymously(auth);
+          }
+        } catch (authErr) {
+          console.error("Anonymous auth failed, proceeding anyway", authErr);
         }
+        
         setIsAdminView(true);
         setIsLoginModalOpen(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (error) {
-        console.error("Auth failed", error);
+        console.error("Login process failed", error);
         setLoginError(true);
       }
     } else {
