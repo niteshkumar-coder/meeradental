@@ -1101,7 +1101,7 @@ export default function App() {
                 className="relative"
               >
                 <img 
-                  src="https://i.ibb.co/tPPj78kR/doctor.png" 
+                  src="https://i.ibb.co/Pv7rhyps/doctor.png" 
                   alt="Dr. Sandeep Singh" 
                   className="w-full h-auto rounded-[40px] shadow-2xl object-cover"
                   referrerPolicy="no-referrer"
