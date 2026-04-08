@@ -1090,10 +1090,10 @@ export default function App() {
       </section>
 
       {/* --- Chief Dentist Section --- */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-[50px] overflow-hidden shadow-xl border border-slate-100 flex flex-col lg:flex-row items-center">
-            <div className="lg:w-1/2 p-8 lg:p-16">
+          <div className="bg-white rounded-[40px] overflow-hidden shadow-xl border border-slate-100 flex flex-col lg:flex-row items-center">
+            <div className="lg:w-1/2 p-6 lg:p-10">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1103,68 +1103,68 @@ export default function App() {
                 <img 
                   src="https://i.ibb.co/Pv7rhyps/doctor.png" 
                   alt="Dr. Sandeep Singh" 
-                  className="w-full h-auto rounded-[40px] shadow-2xl object-cover"
+                  className="w-full h-auto rounded-[32px] shadow-2xl object-cover"
                   referrerPolicy="no-referrer"
                   onError={(e) => {
                     // Fallback to the page link if direct link fails
                     (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800&h=1000";
                   }}
                 />
-                <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-8 rounded-[32px] shadow-xl hidden md:block">
-                  <p className="text-4xl font-bold">15+</p>
-                  <p className="text-sm font-medium opacity-80 uppercase tracking-widest">Years Exp.</p>
+                <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white p-5 rounded-[24px] shadow-xl hidden md:block">
+                  <p className="text-2xl font-bold">15+</p>
+                  <p className="text-[10px] font-medium opacity-80 uppercase tracking-widest">Years Exp.</p>
                 </div>
               </motion.div>
             </div>
             
-            <div className="lg:w-1/2 p-8 lg:p-20">
+            <div className="lg:w-1/2 p-6 lg:p-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <span className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4 block">Chief Dentist & Orthodontist</span>
-                <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8">Dr. Sandeep Singh</h2>
+                <span className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Chief Dentist & Orthodontist</span>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Dr. Sandeep Singh</h2>
                 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-200 transition-colors">
-                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
-                      <Award size={24} />
+                <div className="space-y-3">
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Award size={20} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Qualification</p>
-                      <p className="text-lg font-bold text-slate-800">BDS, MDS (Orthodontics)</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Qualification</p>
+                      <p className="text-base font-bold text-slate-800">BDS, MDS (Orthodontics)</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-200 transition-colors">
-                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
-                      <Stethoscope size={24} />
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Stethoscope size={20} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Specialization</p>
-                      <p className="text-lg font-bold text-slate-800">Specialist in Dental Implants & Orthodontics</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Specialization</p>
+                      <p className="text-base font-bold text-slate-800">Specialist in Dental Implants & Orthodontics</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-200 transition-colors">
-                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
-                      <ShieldCheck size={24} />
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                      <ShieldCheck size={20} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Certification</p>
-                      <p className="text-lg font-bold text-slate-800">Certified | MDS</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Certification</p>
+                      <p className="text-base font-bold text-slate-800">Certified | MDS</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-10 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-wrap gap-4">
                   <button 
                     onClick={() => scrollToSection('appointment')}
-                    className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2 text-sm"
                   >
                     Book Appointment with Dr. Sandeep
-                    <ArrowRight size={20} />
+                    <ArrowRight size={18} />
                   </button>
                 </div>
               </motion.div>
