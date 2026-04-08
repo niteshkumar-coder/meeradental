@@ -530,18 +530,27 @@ export default function App() {
     }
   };
 
-  const handleAdminLogin = async () => {
-    if (!user || user.email !== "niteshkumar9128ku@gmail.com") {
-      try {
-        await signInWithPopup(auth, googleProvider);
-      } catch (error) {
-        console.error("Login failed", error);
-        return;
-      }
-    }
+  const handleAdminLogin = () => {
     setIsLoginModalOpen(true);
     setLoginError(false);
     setLoginPassword('');
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error("Login failed", error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setIsAdminView(false);
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
   };
 
   const submitLogin = (e: FormEvent) => {
@@ -566,12 +575,26 @@ export default function App() {
               </div>
               <h1 className="text-xl font-bold text-blue-900">Admin Dashboard</h1>
             </div>
-            <button 
-              onClick={() => setIsAdminView(false)}
-              className="bg-slate-100 text-slate-600 px-4 py-2 rounded-lg font-bold hover:bg-slate-200 transition-all"
-            >
-              Exit Admin
-            </button>
+            <div className="flex items-center gap-4">
+              {user && (
+                <div className="hidden md:flex items-center gap-2 text-sm text-slate-500">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  {user.email}
+                </div>
+              )}
+              <button 
+                onClick={handleLogout}
+                className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold"
+              >
+                Logout
+              </button>
+              <button 
+                onClick={() => setIsAdminView(false)}
+                className="bg-slate-100 text-slate-600 px-4 py-2 rounded-lg font-bold hover:bg-slate-200 transition-all"
+              >
+                Exit Admin
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -1573,41 +1596,67 @@ export default function App() {
                   <ShieldCheck size={32} />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900">Admin Access</h3>
-                <p className="text-slate-500 text-sm mt-2">Please enter the security password to continue.</p>
+                {!user ? (
+                  <p className="text-slate-500 text-sm mt-2">Please sign in with your Google account first.</p>
+                ) : user.email !== "niteshkumar9128ku@gmail.com" ? (
+                  <p className="text-red-500 text-sm mt-2 font-bold">Access Denied: {user.email} is not authorized.</p>
+                ) : (
+                  <p className="text-green-600 text-sm mt-2 font-bold">Authenticated as {user.email}</p>
+                )}
               </div>
 
-              <form onSubmit={submitLogin} className="space-y-6">
-                <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Password</label>
-                  <input 
-                    autoFocus
-                    type="password" 
-                    value={loginPassword}
-                    onChange={(e) => {
-                      setLoginPassword(e.target.value);
-                      setLoginError(false);
-                    }}
-                    placeholder="••••••••"
-                    className={`w-full px-5 py-4 rounded-2xl border ${loginError ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-lg font-mono`}
-                  />
-                  {loginError && (
-                    <motion.p 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="text-red-500 text-xs font-bold mt-2 flex items-center gap-1"
+              {!user || user.email !== "niteshkumar9128ku@gmail.com" ? (
+                <div className="space-y-4">
+                  <button 
+                    onClick={handleGoogleSignIn}
+                    className="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-200 text-slate-700 py-4 rounded-2xl text-lg font-bold hover:bg-slate-50 transition-all shadow-sm active:scale-[0.98]"
+                  >
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-6 h-6" />
+                    Sign in with Google
+                  </button>
+                  {user && (
+                    <button 
+                      onClick={handleLogout}
+                      className="w-full text-slate-500 text-sm font-bold hover:underline"
                     >
-                      <X size={12} /> Incorrect password. Please try again.
-                    </motion.p>
+                      Use a different account
+                    </button>
                   )}
                 </div>
+              ) : (
+                <form onSubmit={submitLogin} className="space-y-6">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Security Password</label>
+                    <input 
+                      autoFocus
+                      type="password" 
+                      value={loginPassword}
+                      onChange={(e) => {
+                        setLoginPassword(e.target.value);
+                        setLoginError(false);
+                      }}
+                      placeholder="••••••••"
+                      className={`w-full px-5 py-4 rounded-2xl border ${loginError ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-lg font-mono`}
+                    />
+                    {loginError && (
+                      <motion.p 
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="text-red-500 text-xs font-bold mt-2 flex items-center gap-1"
+                      >
+                        <X size={12} /> Incorrect password. Please try again.
+                      </motion.p>
+                    )}
+                  </div>
 
-                <button 
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-4 rounded-2xl text-lg font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 active:scale-[0.98]"
-                >
-                  Verify & Login
-                </button>
-              </form>
+                  <button 
+                    type="submit"
+                    className="w-full bg-blue-600 text-white py-4 rounded-2xl text-lg font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 active:scale-[0.98]"
+                  >
+                    Verify & Login
+                  </button>
+                </form>
+              )}
             </motion.div>
           </div>
         )}
