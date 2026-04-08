@@ -44,7 +44,10 @@ import {
   HeartPulse,
   Sparkles,
   Activity,
-  Trash2
+  Trash2,
+  Facebook,
+  Instagram,
+  Youtube
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -1098,13 +1101,12 @@ export default function App() {
                 className="relative"
               >
                 <img 
-                  src="https://i.ibb.co/0jnmk9pd/de.png" 
+                  src="https://i.ibb.co/tPPj78kR/doctor.png" 
                   alt="Dr. Sandeep Singh" 
                   className="w-full h-auto rounded-[40px] shadow-2xl object-cover"
                   referrerPolicy="no-referrer"
                   onError={(e) => {
-                    // Fallback to the page link if direct link fails (though it won't render as img)
-                    // Better fallback to a high-quality dental professional placeholder if needed
+                    // Fallback to the page link if direct link fails
                     (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800&h=1000";
                   }}
                 />
@@ -1525,10 +1527,20 @@ export default function App() {
                 With advanced technology and expert doctors, we ensure your oral health is in good hands.
               </p>
               <div className="flex gap-4">
-                {['facebook', 'instagram', 'twitter', 'youtube'].map(social => (
-                  <a key={social} href="#" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
-                    <span className="sr-only">{social}</span>
-                    <ArrowRight size={18} />
+                {[
+                  { icon: Facebook, link: 'https://www.facebook.com/profile.php?id=61563333327816', label: 'Facebook' },
+                  { icon: Instagram, link: 'https://www.instagram.com/meeradental_?igsh=djhjNjJwcXpvYWZ1', label: 'Instagram' },
+                  { icon: Youtube, link: 'https://www.youtube.com/@meeradentalwithdrsatyam', label: 'YouTube' }
+                ].map((social, i) => (
+                  <a 
+                    key={i} 
+                    href={social.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all group"
+                  >
+                    <span className="sr-only">{social.label}</span>
+                    <social.icon size={18} className="group-hover:scale-110 transition-transform" />
                   </a>
                 ))}
               </div>
