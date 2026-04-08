@@ -17,8 +17,7 @@ import {
   onSnapshot, 
   query, 
   orderBy, 
-  signInWithPopup, 
-  signOut,
+  signInAnonymously,
   OperationType,
   handleFirestoreError
 } from './firebase';
@@ -553,12 +552,21 @@ export default function App() {
     }
   };
 
-  const submitLogin = (e: FormEvent) => {
+  const submitLogin = async (e: FormEvent) => {
     e.preventDefault();
-    if (loginPassword === "Meera@Meera") {
-      setIsAdminView(true);
-      setIsLoginModalOpen(false);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (loginPassword === "Meera@12Meera") {
+      try {
+        // Sign in anonymously to allow Firestore access without Google account
+        if (!user) {
+          await signInAnonymously(auth);
+        }
+        setIsAdminView(true);
+        setIsLoginModalOpen(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (error) {
+        console.error("Auth failed", error);
+        setLoginError(true);
+      }
     } else {
       setLoginError(true);
     }
@@ -1449,7 +1457,7 @@ export default function App() {
             
             <div className="lg:col-span-2 bg-white p-4 rounded-[40px] shadow-sm border border-slate-100 h-[500px] lg:h-auto">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.6657929421!2d85.1234567!3d25.5678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed585678901234%3A0x1234567890abcdef!2sMeera%20Dental!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                src="https://maps.google.com/maps?q=Meera%20Dental%20Patna%2070%20Feet%20BPCL%20Rd%20Sipara&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                 className="w-full h-full rounded-[32px] border-0"
                 allowFullScreen 
                 loading="lazy" 
@@ -1596,67 +1604,41 @@ export default function App() {
                   <ShieldCheck size={32} />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900">Admin Access</h3>
-                {!user ? (
-                  <p className="text-slate-500 text-sm mt-2">Please sign in with your Google account first.</p>
-                ) : user.email !== "niteshkumar9128ku@gmail.com" ? (
-                  <p className="text-red-500 text-sm mt-2 font-bold">Access Denied: {user.email} is not authorized.</p>
-                ) : (
-                  <p className="text-green-600 text-sm mt-2 font-bold">Authenticated as {user.email}</p>
-                )}
+                <p className="text-slate-500 text-sm mt-2">Enter the security password to access the dashboard.</p>
               </div>
 
-              {!user || user.email !== "niteshkumar9128ku@gmail.com" ? (
-                <div className="space-y-4">
-                  <button 
-                    onClick={handleGoogleSignIn}
-                    className="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-200 text-slate-700 py-4 rounded-2xl text-lg font-bold hover:bg-slate-50 transition-all shadow-sm active:scale-[0.98]"
-                  >
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-6 h-6" />
-                    Sign in with Google
-                  </button>
-                  {user && (
-                    <button 
-                      onClick={handleLogout}
-                      className="w-full text-slate-500 text-sm font-bold hover:underline"
+              <form onSubmit={submitLogin} className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Security Password</label>
+                  <input 
+                    autoFocus
+                    type="password" 
+                    value={loginPassword}
+                    onChange={(e) => {
+                      setLoginPassword(e.target.value);
+                      setLoginError(false);
+                    }}
+                    placeholder="••••••••"
+                    className={`w-full px-5 py-4 rounded-2xl border ${loginError ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-lg font-mono`}
+                  />
+                  {loginError && (
+                    <motion.p 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="text-red-500 text-xs font-bold mt-2 flex items-center gap-1"
                     >
-                      Use a different account
-                    </button>
+                      <X size={12} /> Incorrect password. Please try again.
+                    </motion.p>
                   )}
                 </div>
-              ) : (
-                <form onSubmit={submitLogin} className="space-y-6">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Security Password</label>
-                    <input 
-                      autoFocus
-                      type="password" 
-                      value={loginPassword}
-                      onChange={(e) => {
-                        setLoginPassword(e.target.value);
-                        setLoginError(false);
-                      }}
-                      placeholder="••••••••"
-                      className={`w-full px-5 py-4 rounded-2xl border ${loginError ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-lg font-mono`}
-                    />
-                    {loginError && (
-                      <motion.p 
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="text-red-500 text-xs font-bold mt-2 flex items-center gap-1"
-                      >
-                        <X size={12} /> Incorrect password. Please try again.
-                      </motion.p>
-                    )}
-                  </div>
 
-                  <button 
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-4 rounded-2xl text-lg font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 active:scale-[0.98]"
-                  >
-                    Verify & Login
-                  </button>
-                </form>
-              )}
+                <button 
+                  type="submit"
+                  className="w-full bg-blue-600 text-white py-4 rounded-2xl text-lg font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 active:scale-[0.98]"
+                >
+                  Verify & Login
+                </button>
+              </form>
             </motion.div>
           </div>
         )}

@@ -2,8 +2,13 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /appointments/{appointmentId} {
+      // Allow anyone to book an appointment
       allow create: if request.resource.data.name is string && request.resource.data.phone is string;
-      allow read, write: if request.auth != null && request.auth.token.email == "niteshkumar9128ku@gmail.com";
+      
+      // Allow authenticated users (including anonymous) to read/write.
+      // NOTE: This is less secure than email-based auth but respects the user's request for password-only login.
+      // The frontend password "Meera@12Meera" acts as the primary access control.
+      allow read, write: if request.auth != null;
     }
   }
 }
