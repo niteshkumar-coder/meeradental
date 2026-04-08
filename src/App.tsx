@@ -53,6 +53,7 @@ import { motion, AnimatePresence } from 'motion/react';
 const CLINIC_INFO = {
   name: "Meera Dental",
   tagline: "Best Dental Doctor in Patna",
+  logo: "https://i.ibb.co/bRHWxBNW/23e68d8a-48a5-47d7-a536-5cb1b6bfa9b5-removebg-preview.png",
   phone: "091535 93567",
   whatsapp: "919153593567",
   address: "70 Feet BPCL Rd, Opposite Reliance Smart, Purbi Saristabad, Sipara, Patna, Bihar 800032",
@@ -867,12 +868,19 @@ export default function App() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div 
-            className="flex items-center gap-2 cursor-pointer" 
+            className="flex items-center gap-3 cursor-pointer" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white">
-              <Stethoscope size={24} />
-            </div>
+            <img 
+              src={CLINIC_INFO.logo} 
+              alt={CLINIC_INFO.name} 
+              className="w-12 h-12 object-contain"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                // Fallback if the direct link fails
+                (e.target as HTMLImageElement).src = "https://ibb.co/bRHWxBNW";
+              }}
+            />
             <div>
               <h1 className="text-xl font-bold leading-none text-blue-900">Meera Dental</h1>
               <p className="text-[10px] uppercase tracking-wider text-blue-600 font-semibold">Best Care in Patna</p>
@@ -1483,10 +1491,13 @@ export default function App() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div>
-              <div className="flex items-center gap-2 text-white mb-6">
-                <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                  <Stethoscope size={20} />
-                </div>
+              <div className="flex items-center gap-3 text-white mb-6">
+                <img 
+                  src={CLINIC_INFO.logo} 
+                  alt={CLINIC_INFO.name} 
+                  className="w-10 h-10 object-contain"
+                  referrerPolicy="no-referrer"
+                />
                 <span className="text-xl font-bold">Meera Dental</span>
               </div>
               <p className="text-sm leading-relaxed mb-6">
