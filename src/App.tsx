@@ -157,30 +157,6 @@ const TESTIMONIALS = [
   }
 ];
 
-const TEAM = [
-  {
-    name: "Dr. Sandeep Singh",
-    role: "Chief Dentist & Orthodontist",
-    qual: "BDS, MDS (Orthodontics)",
-    exp: "15+ Years Experience",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400&h=500"
-  },
-  {
-    name: "Dr. Anjali Verma",
-    role: "Senior Dental Surgeon",
-    qual: "BDS, MDS (Endodontics)",
-    exp: "8+ Years Experience",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400&h=500"
-  },
-  {
-    name: "Ravi Prakash",
-    role: "Dental Technician",
-    qual: "Diploma in Dental Tech",
-    exp: "10+ Years Experience",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400&h=500"
-  }
-];
-
 const BEFORE_AFTER = [
   {
     title: "Smile Makeover",
@@ -889,7 +865,7 @@ export default function App() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-8">
-            {['Home', 'About', 'Services', 'Team', 'Reviews', 'Contact'].map((item) => (
+            {['Home', 'About', 'Services', 'Reviews', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -925,7 +901,7 @@ export default function App() {
               className="lg:hidden bg-white border-t border-slate-100 overflow-hidden"
             >
               <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                {['Home', 'About', 'Services', 'Team', 'Reviews', 'Contact'].map((item) => (
+                {['Home', 'About', 'Services', 'Reviews', 'Contact'].map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
@@ -1172,47 +1148,6 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-8">
                   <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
                   <p className="text-blue-200 text-sm font-medium">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- Team Section --- */}
-      <section id="team" className="py-24 bg-slate-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Meet Our Experts</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
-              Our team consists of highly qualified specialists dedicated to providing 
-              the best possible outcomes for our patients.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {TEAM.map((member, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="relative mb-6 rounded-[40px] overflow-hidden aspect-[4/5]">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-blue-400 font-bold text-sm uppercase tracking-widest mb-2">{member.role}</p>
-                  <p className="text-slate-400 text-sm">{member.qual}</p>
-                  <p className="text-slate-500 text-xs mt-2">{member.exp}</p>
                 </div>
               </motion.div>
             ))}
@@ -1517,7 +1452,7 @@ export default function App() {
             <div>
               <h4 className="text-white font-bold mb-6">Quick Links</h4>
               <ul className="space-y-4 text-sm">
-                {['Home', 'About Us', 'Our Team', 'Patient Reviews', 'Contact Us'].map(link => (
+                {['Home', 'About Us', 'Patient Reviews', 'Contact Us'].map(link => (
                   <li key={link}>
                     <button onClick={() => scrollToSection(link.toLowerCase().split(' ')[0])} className="hover:text-blue-400 transition-colors">
                       {link}
