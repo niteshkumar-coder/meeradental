@@ -1086,6 +1086,91 @@ export default function App() {
         </div>
       </section>
 
+      {/* --- Chief Dentist Section --- */}
+      <section className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-[50px] overflow-hidden shadow-xl border border-slate-100 flex flex-col lg:flex-row items-center">
+            <div className="lg:w-1/2 p-8 lg:p-16">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <img 
+                  src="https://i.ibb.co/0jnmk9pd/de.png" 
+                  alt="Dr. Sandeep Singh" 
+                  className="w-full h-auto rounded-[40px] shadow-2xl object-cover"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    // Fallback to the page link if direct link fails (though it won't render as img)
+                    // Better fallback to a high-quality dental professional placeholder if needed
+                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800&h=1000";
+                  }}
+                />
+                <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-8 rounded-[32px] shadow-xl hidden md:block">
+                  <p className="text-4xl font-bold">15+</p>
+                  <p className="text-sm font-medium opacity-80 uppercase tracking-widest">Years Exp.</p>
+                </div>
+              </motion.div>
+            </div>
+            
+            <div className="lg:w-1/2 p-8 lg:p-20">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4 block">Chief Dentist & Orthodontist</span>
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8">Dr. Sandeep Singh</h2>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
+                      <Award size={24} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Qualification</p>
+                      <p className="text-lg font-bold text-slate-800">BDS, MDS (Orthodontics)</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
+                      <Stethoscope size={24} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Specialization</p>
+                      <p className="text-lg font-bold text-slate-800">Specialist in Dental Implants & Orthodontics</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
+                      <ShieldCheck size={24} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Certification</p>
+                      <p className="text-lg font-bold text-slate-800">Certified | MDS</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <button 
+                    onClick={() => scrollToSection('appointment')}
+                    className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2"
+                  >
+                    Book Appointment with Dr. Sandeep
+                    <ArrowRight size={20} />
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- Services Section --- */}
       <section id="services" className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
