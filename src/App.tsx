@@ -47,7 +47,8 @@ import {
   Trash2,
   Facebook,
   Instagram,
-  Youtube
+  Youtube,
+  User
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -57,7 +58,7 @@ const CLINIC_INFO = {
   name: "Meera Dental",
   tagline: "Best Dental Doctor in Patna",
   logo: "https://i.ibb.co/bRHWxBNW/23e68d8a-48a5-47d7-a536-5cb1b6bfa9b5-removebg-preview.png",
-  phone: "091535 93567",
+  phone: "+91 91535 93567",
   whatsapp: "919153593567",
   address: "70 Feet BPCL Rd, Opposite Reliance Smart, Purbi Saristabad, Sipara, Patna, Bihar 800032",
   timing: "7:00 AM – 10:00 PM",
@@ -74,44 +75,14 @@ const SERVICES = [
     icon: <Award className="w-8 h-8" />
   },
   {
-    title: "Cosmetic Dentistry",
-    description: "Enhance your smile with professional whitening, veneers, and aesthetic bonding for a perfect look.",
+    title: "Orthodontics",
+    description: "Expert teeth alignment and bite correction using modern braces and clear aligners for all age groups.",
     icon: <Star className="w-8 h-8" />
   },
   {
-    title: "General Dentistry",
-    description: "Comprehensive oral health checkups, cleanings, and preventive care for patients of all ages.",
-    icon: <ShieldCheck className="w-8 h-8" />
-  },
-  {
-    title: "Crowns & Bridges",
-    description: "High-quality restorative solutions to strengthen damaged teeth and replace missing ones effectively.",
-    icon: <CheckCircle2 className="w-8 h-8" />
-  },
-  {
-    title: "Braces & Aligners",
-    description: "Expert orthodontic care including traditional braces and modern clear aligners for perfectly aligned teeth.",
-    icon: <Sparkles className="w-8 h-8" />
-  },
-  {
-    title: "Full Mouth Rehabilitation",
-    description: "Complete restorative treatment plans to rebuild your oral health and function from the ground up.",
-    icon: <Activity className="w-8 h-8" />
-  },
-  {
-    title: "Gum Treatment",
-    description: "Specialized care for periodontal health to prevent gum disease and ensure a strong foundation for your teeth.",
-    icon: <UserCheck className="w-8 h-8" />
-  },
-  {
-    title: "Pediatric Dentistry",
-    description: "Gentle and friendly dental care specifically designed to make children feel comfortable and safe.",
-    icon: <Smile className="w-8 h-8" />
-  },
-  {
-    title: "Oral Cancer Treatment",
-    description: "Advanced screening and specialized treatment options for early detection and care of oral health conditions.",
-    icon: <HeartPulse className="w-8 h-8" />
+    title: "Root Canal Treatment",
+    description: "Advanced and painless root canal procedures to save your natural teeth and relieve dental pain effectively.",
+    icon: <Stethoscope className="w-8 h-8" />
   }
 ];
 
@@ -137,7 +108,7 @@ const TESTIMONIALS = [
   {
     name: "Rahul Kumar",
     treatment: "Root Canal Treatment",
-    text: "Dr. Sandeep is very professional. The RCT was completely painless. Highly recommended for anyone in Patna.",
+    text: "Dr. Satyam is very professional. The RCT was completely painless. Highly recommended for anyone in Patna.",
     rating: 5
   },
   {
@@ -348,12 +319,12 @@ export default function App() {
     // Doctor Info
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
-    doc.text('Dr. Sandeep Singh', 105, 45, { align: 'center' });
+    doc.text('Dr. Satyam Kumar', 105, 45, { align: 'center' });
     
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
-    doc.text('BDS, MDS (Orthodontics)', 105, 51, { align: 'center' });
-    doc.text('15+ Years Experience', 105, 57, { align: 'center' });
+    doc.text('BDS – MIDa, MDS', 105, 51, { align: 'center' });
+    doc.text('Dental Surgeon', 105, 57, { align: 'center' });
 
     // Contact Info Bar
     doc.setDrawColor(primaryBlue);
@@ -1051,14 +1022,12 @@ export default function App() {
                 Providing Advanced Dental Care with a Personal Touch
               </h2>
               <p className="text-lg text-slate-600 mb-6">
-                Meera Dental has been a cornerstone of dental health in Patna for over 15 years. 
-                Our mission is to provide high-quality, comprehensive dental care in a comfortable 
-                and friendly environment.
+                Dr. Satyam Kumar is a dedicated dental surgeon committed to providing high-quality dental care with a focus on patient comfort, hygiene, and modern treatment techniques.
               </p>
               <p className="text-slate-600 mb-8">
-                We utilize the latest technology and follow strict sterilization protocols to ensure 
-                the safety and satisfaction of every patient. From routine checkups to complex 
-                surgical procedures, our team is dedicated to giving you the smile you deserve.
+                Meera Dental has been a cornerstone of dental health in Patna. 
+                Our mission is to provide high-quality, comprehensive dental care in a comfortable 
+                and friendly environment.
               </p>
               
               <ul className="space-y-4 mb-10">
@@ -1102,7 +1071,7 @@ export default function App() {
               >
                 <img 
                   src="https://i.ibb.co/xKzQMp7c/gggggggg-2.png" 
-                  alt="Dr. Sandeep Singh" 
+                  alt="Dr. Satyam Kumar" 
                   className="w-full h-auto rounded-[32px] shadow-2xl object-cover"
                   referrerPolicy="no-referrer"
                   loading="eager"
@@ -1125,8 +1094,8 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <span className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Chief Dentist & Orthodontist</span>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Dr. Sandeep Singh</h2>
+                <span className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Chief Dentist & Surgeon</span>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Dr. Satyam Kumar (MDS)</h2>
                 
                 <div className="space-y-3">
                   <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
@@ -1135,7 +1104,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Qualification</p>
-                      <p className="text-base font-bold text-slate-800">BDS, MDS (Orthodontics)</p>
+                      <p className="text-base font-bold text-slate-800">BDS – Buddha Dental Hospital, MDS</p>
                     </div>
                   </div>
 
@@ -1144,8 +1113,8 @@ export default function App() {
                       <Stethoscope size={20} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Specialization</p>
-                      <p className="text-base font-bold text-slate-800">Specialist in Dental Implants & Orthodontics</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Title</p>
+                      <p className="text-base font-bold text-slate-800">Dental Surgeon (BDS – MIDa)</p>
                     </div>
                   </div>
 
@@ -1154,8 +1123,8 @@ export default function App() {
                       <ShieldCheck size={20} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Certification</p>
-                      <p className="text-base font-bold text-slate-800">Certified | MDS</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Certificates & Awards</p>
+                      <p className="text-base font-bold text-slate-800">Certified Dental Surgeon | MDS | MIDa</p>
                     </div>
                   </div>
                 </div>
@@ -1165,7 +1134,7 @@ export default function App() {
                     onClick={() => scrollToSection('appointment')}
                     className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2 text-sm"
                   >
-                    Book Appointment with Dr. Sandeep
+                    Book Appointment with Dr. Satyam
                     <ArrowRight size={18} />
                   </button>
                 </div>
@@ -1179,8 +1148,8 @@ export default function App() {
       <section id="services" className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <SectionHeading 
-            title="Our Specialized Services" 
-            subtitle="We offer a wide range of dental treatments tailored to your specific needs, using the latest medical advancements."
+            title="Our Specializations" 
+            subtitle="We provide a wide range of specialized dental treatments using the latest medical advancements."
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1238,6 +1207,47 @@ export default function App() {
                   <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
                   <p className="text-blue-200 text-sm font-medium">{item.desc}</p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- Consultants Section --- */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <SectionHeading 
+            title="Our Specialist Consultants" 
+            subtitle="Our team of highly qualified specialists ensures you receive the best care in every dental field."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                name: "Dr. Pinak Kashyap",
+                title: "MDS (Orthodontics)",
+                desc: "Expert in teeth alignment and corrective dental procedures."
+              },
+              {
+                name: "Dr. Rohit Raj",
+                title: "MDS (Oral & Maxillofacial Surgeon)",
+                desc: "Specialist in complex oral surgeries and facial reconstruction."
+              }
+            ].map((consultant, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-slate-50 p-8 rounded-[32px] border border-slate-100 hover:shadow-xl transition-all group"
+              >
+                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <User size={32} />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">{consultant.name}</h3>
+                <p className="text-blue-600 font-bold text-sm mb-4 uppercase tracking-wider">{consultant.title}</p>
+                <p className="text-slate-600">{consultant.desc}</p>
               </motion.div>
             ))}
           </div>
