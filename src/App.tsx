@@ -62,7 +62,7 @@ const CLINIC_INFO = {
   whatsapp: "919153593567",
   address: "70 Feet BPCL Rd, Opposite Reliance Smart, Purbi Saristabad, Sipara, Patna, Bihar 800032",
   timing: "7:00 AM – 10:00 PM",
-  rating: 4.9,
+  rating: 5.0,
   reviewsCount: 775,
   experience: "15+ Years",
   patients: "10,000+"
@@ -1004,7 +1004,7 @@ export default function App() {
               </div>
               <div className="space-y-4 pt-12">
                 <div className="bg-slate-100 p-8 rounded-3xl">
-                  <h3 className="text-4xl font-bold text-slate-900 mb-1">4.9</h3>
+                  <h3 className="text-4xl font-bold text-slate-900 mb-1">5.0</h3>
                   <p className="text-slate-500 font-medium">Google Rating</p>
                 </div>
                 <img 
@@ -1259,7 +1259,7 @@ export default function App() {
         <div className="container mx-auto px-4">
           <SectionHeading 
             title="What Our Patients Say" 
-            subtitle="We take pride in our 4.9-star rating. Here's why thousands of patients trust Meera Dental."
+            subtitle="We take pride in our 5-star rating. Here's why thousands of patients trust Meera Dental."
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
