@@ -1101,12 +1101,14 @@ export default function App() {
                 className="relative"
               >
                 <img 
-                  src="https://i.ibb.co/Pv7rhyps/doctor.png" 
+                  src="https://i.ibb.co/xKzQMp7c/gggggggg-2.png" 
                   alt="Dr. Sandeep Singh" 
                   className="w-full h-auto rounded-[32px] shadow-2xl object-cover"
                   referrerPolicy="no-referrer"
+                  loading="eager"
+                  fetchPriority="high"
                   onError={(e) => {
-                    // Fallback to the page link if direct link fails
+                    // Fallback to a high-quality dental professional placeholder if direct link fails
                     (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800&h=1000";
                   }}
                 />
