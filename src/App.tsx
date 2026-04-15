@@ -1124,7 +1124,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Certificates & Awards</p>
-                      <p className="text-base font-bold text-slate-800">Certified Dental Surgeon | MDS | MIDa</p>
+                      <p className="text-base font-bold text-slate-800">Dental Surgeon Specialist</p>
                     </div>
                   </div>
                 </div>
