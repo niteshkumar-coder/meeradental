@@ -40,6 +40,7 @@ import {
   Users,
   CheckCircle2,
   ArrowRight,
+  ArrowLeft,
   Smile,
   HeartPulse,
   Sparkles,
@@ -149,6 +150,181 @@ const BEFORE_AFTER = [
   }
 ];
 
+const SERVICE_DETAILS: Record<string, any> = {
+  "Dental Implants": {
+    title: "Dental Implants",
+    icon: "🪥",
+    whatItIs: "Dental implants are a permanent solution for missing teeth. A small titanium post is placed into your jawbone, and a crown (artificial tooth) is fixed on top.",
+    whoNeedsIt: [
+      "People with one or more missing teeth",
+      "Those who want a long-lasting and natural-looking solution"
+    ],
+    procedureSteps: [
+      "Consultation and X-ray",
+      "Implant placed in the jaw",
+      "Healing period (3–6 months)",
+      "Crown (tooth) attached"
+    ],
+    benefits: [
+      "Looks and feels like real teeth",
+      "Long-lasting (10–20+ years)",
+      "Improves chewing and speech",
+      "Prevents bone loss"
+    ],
+    painRecovery: [
+      "Mild discomfort for a few days",
+      "Done under local anesthesia"
+    ],
+    images: [
+      "https://i.ibb.co/fdHq1Hnf/image.png",
+      "https://i.ibb.co/SXbncSzf/image.png",
+      "https://i.ibb.co/5gX2QdpV/image.png",
+      "https://i.ibb.co/W4s0zLBf/image.png",
+      "https://i.ibb.co/vx6WhnBG/image.png"
+    ]
+  },
+  "Orthodontics": {
+    title: "Orthodontics (Teeth Alignment)",
+    icon: "😁",
+    whatItIs: "Orthodontics is the treatment used to straighten teeth and fix bite issues using braces or clear aligners.",
+    whoNeedsIt: [
+      "Crooked or crowded teeth",
+      "Gaps between teeth",
+      "Overbite, underbite, crossbite"
+    ],
+    types: [
+      "Metal braces",
+      "Ceramic (tooth-colored) braces",
+      "Clear aligners (almost invisible trays)"
+    ],
+    duration: "Usually 6 months to 2 years",
+    benefits: [
+      "Straight, beautiful smile",
+      "Better oral hygiene (easier cleaning)",
+      "Improved bite and jaw function"
+    ],
+    painCare: [
+      "Mild pressure after adjustments",
+      "Avoid hard/sticky foods",
+      "Regular dental visits needed"
+    ],
+    images: [
+      "https://i.ibb.co/DD2btTDJ/image.png",
+      "https://i.ibb.co/PsS6P0g6/image.png",
+      "https://i.ibb.co/hRnXY8cH/image.png",
+      "https://i.ibb.co/Wp34BBgT/image.png",
+      "https://i.ibb.co/84P14Qzg/image.png"
+    ]
+  },
+  "Root Canal Treatment": {
+    title: "Root Canal Treatment",
+    icon: "🦷",
+    whatItIs: "A root canal is done to save a damaged or infected tooth by removing the infected pulp (nerve inside the tooth).",
+    whenNeeded: [
+      "Severe tooth pain",
+      "Infection or swelling",
+      "Deep cavities"
+    ],
+    procedureSteps: [
+      "Numbing the area",
+      "Removing infected pulp",
+      "Cleaning and filling the root",
+      "Placing a crown (optional but recommended)"
+    ],
+    benefits: [
+      "Saves your natural tooth",
+      "Relieves pain",
+      "Prevents spread of infection"
+    ],
+    painLevel: [
+      "Mostly painless (similar to a filling)",
+      "Mild soreness after treatment"
+    ],
+    images: [
+      "https://i.ibb.co/3Ltw2tL/image.png",
+      "https://i.ibb.co/fYh9KtV4/image.png",
+      "https://i.ibb.co/Vptp4M1S/image.png",
+      "https://i.ibb.co/ccvHGcqr/image.png",
+      "https://i.ibb.co/p6LrM7DB/image.png"
+    ]
+  },
+  "Smile Makeover": {
+    title: "Smile Makeover",
+    icon: "✨",
+    whatItIs: "A smile makeover is a combination of cosmetic dental treatments to improve the overall appearance of your smile.",
+    includes: [
+      "Teeth whitening",
+      "Veneers",
+      "Crowns",
+      "Braces or aligners"
+    ],
+    whoNeedsIt: [
+      "Stained, chipped, or uneven teeth",
+      "People wanting a perfect smile"
+    ],
+    benefits: [
+      "Boosts confidence",
+      "Enhances facial appearance",
+      "Customized treatment plan"
+    ],
+    images: [
+      "https://i.ibb.co/LDwW37SB/image.png",
+      "https://i.ibb.co/JFK78H8V/image.png",
+      "https://i.ibb.co/v4L35FJw/image.png",
+      "https://i.ibb.co/dYTL5vv/image.png",
+      "https://i.ibb.co/R4PVN1X7/image.png"
+    ]
+  },
+  "Teeth Alignment": {
+    title: "Teeth Alignment (Orthodontic Correction)",
+    icon: "😃",
+    whatItIs: "This is the process of correcting the position of your teeth to make them straight and properly aligned.",
+    methods: [
+      "Braces",
+      "Clear aligners"
+    ],
+    whyItMatters: [
+      "Improves chewing",
+      "Prevents tooth wear",
+      "Reduces risk of gum disease"
+    ],
+    images: [
+      "https://i.ibb.co/tTZgQpq6/image.png",
+      "https://i.ibb.co/mCP4cp0x/image.png",
+      "https://i.ibb.co/b59RFwdc/image.png",
+      "https://i.ibb.co/4kWXcsS/image.png",
+      "https://i.ibb.co/35BX1bxr/image.png"
+    ]
+  },
+  "Teeth Whitening": {
+    title: "Teeth Whitening",
+    icon: "🌟",
+    whatItIs: "Teeth whitening is a cosmetic treatment that makes your teeth whiter and brighter.",
+    types: [
+      "In-clinic whitening (fast results)",
+      "At-home kits (slower but effective)"
+    ],
+    whoNeedsIt: [
+      "Yellow or stained teeth",
+      "Smokers or coffee/tea drinkers"
+    ],
+    benefits: [
+      "Instant smile improvement",
+      "Safe and non-invasive",
+      "Boosts confidence"
+    ],
+    results: "Teeth can become 2–8 shades lighter",
+    images: [
+      "https://i.ibb.co/CKTcnp7G/image.png",
+      "https://i.ibb.co/PZX4hdDX/image.png",
+      "https://i.ibb.co/C33QKTB1/image.png",
+      "https://i.ibb.co/7NJNhBXc/image.png",
+      "https://i.ibb.co/sdnwkwdW/image.png",
+      "https://i.ibb.co/CK4BpV4Q/image.png"
+    ]
+  }
+};
+
 // --- Components ---
 
 const SectionHeading = ({ title, subtitle }: { title: string; subtitle?: string }) => (
@@ -176,8 +352,255 @@ const SectionHeading = ({ title, subtitle }: { title: string; subtitle?: string 
   </div>
 );
 
+const ServiceDetails = ({ service, onClose }: { service: any; onClose: () => void }) => {
+  if (!service) return null;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, x: '100%' }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: '100%' }}
+      className="fixed inset-0 z-[100] bg-white overflow-y-auto"
+    >
+      {/* Header */}
+      <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-slate-100 px-4 py-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <button 
+            onClick={onClose}
+            className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors font-bold"
+          >
+            <ArrowLeft size={20} />
+            Back to Home
+          </button>
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">{service.icon}</span>
+            <h1 className="text-xl font-black text-slate-900">{service.title}</h1>
+          </div>
+          <button 
+            onClick={onClose}
+            className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          {/* Main Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div>
+              <h2 className="text-3xl font-black text-slate-900 mb-6 flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-blue-600 rounded-full" />
+                What it is
+              </h2>
+              <p className="text-lg text-slate-600 leading-relaxed mb-8">
+                {service.whatItIs}
+              </p>
+
+              {service.whoNeedsIt && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">Who needs it</h3>
+                  <ul className="space-y-3">
+                    {service.whoNeedsIt.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-slate-600">
+                        <CheckCircle2 className="text-blue-600 shrink-0 mt-1" size={18} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.whenNeeded && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">When needed</h3>
+                  <ul className="space-y-3">
+                    {service.whenNeeded.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-slate-600">
+                        <CheckCircle2 className="text-blue-600 shrink-0 mt-1" size={18} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-8">
+              {service.procedureSteps && (
+                <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-100">
+                  <h3 className="text-xl font-bold text-slate-900 mb-6">Procedure Steps</h3>
+                  <div className="space-y-6">
+                    {service.procedureSteps.map((step: string, i: number) => (
+                      <div key={i} className="flex gap-4">
+                        <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
+                          {i + 1}
+                        </div>
+                        <p className="text-slate-700 font-medium pt-1">{step}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {service.types && (
+                <div className="bg-blue-50 p-8 rounded-[32px] border border-blue-100">
+                  <h3 className="text-xl font-bold text-blue-900 mb-4">Types of treatment</h3>
+                  <ul className="space-y-3">
+                    {service.types.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-blue-800">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.methods && (
+                <div className="bg-blue-50 p-8 rounded-[32px] border border-blue-100">
+                  <h3 className="text-xl font-bold text-blue-900 mb-4">Methods used</h3>
+                  <ul className="space-y-3">
+                    {service.methods.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-blue-800">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Benefits & Recovery */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {service.benefits && (
+              <div className="p-8 bg-green-50 rounded-[32px] border border-green-100">
+                <h3 className="text-xl font-bold text-green-900 mb-6">Benefits</h3>
+                <ul className="grid grid-cols-1 gap-4">
+                  {service.benefits.map((benefit: string, i: number) => (
+                    <li key={i} className="flex items-start gap-3 text-green-800">
+                      <CheckCircle2 className="text-green-600 shrink-0 mt-1" size={18} />
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="space-y-8">
+              {service.painRecovery && (
+                <div className="p-8 bg-orange-50 rounded-[32px] border border-orange-100">
+                  <h3 className="text-xl font-bold text-orange-900 mb-4">Pain & Recovery</h3>
+                  <ul className="space-y-3">
+                    {service.painRecovery.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-orange-800">
+                        <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.painCare && (
+                <div className="p-8 bg-orange-50 rounded-[32px] border border-orange-100">
+                  <h3 className="text-xl font-bold text-orange-900 mb-4">Pain & Care</h3>
+                  <ul className="space-y-3">
+                    {service.painCare.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-orange-800">
+                        <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.painLevel && (
+                <div className="p-8 bg-orange-50 rounded-[32px] border border-orange-100">
+                  <h3 className="text-xl font-bold text-orange-900 mb-4">Pain Level</h3>
+                  <ul className="space-y-3">
+                    {service.painLevel.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-orange-800">
+                        <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.duration && (
+                <div className="p-8 bg-blue-50 rounded-[32px] border border-blue-100">
+                  <h3 className="text-xl font-bold text-blue-900 mb-2">Duration</h3>
+                  <p className="text-blue-800 font-medium">{service.duration}</p>
+                </div>
+              )}
+
+              {service.results && (
+                <div className="p-8 bg-blue-50 rounded-[32px] border border-blue-100">
+                  <h3 className="text-xl font-bold text-blue-900 mb-2">Results</h3>
+                  <p className="text-blue-800 font-medium">{service.results}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Image Gallery */}
+          {service.images && (
+            <div>
+              <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-blue-600 rounded-full" />
+                Gallery
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {service.images.map((img: string, i: number) => (
+                  <motion.div 
+                    key={i}
+                    whileHover={{ scale: 1.02 }}
+                    className="aspect-square rounded-[32px] overflow-hidden shadow-lg border border-slate-100"
+                  >
+                    <img 
+                      src={img} 
+                      alt={`${service.title} gallery ${i + 1}`} 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=600&h=600&sig=${i}`;
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          <div className="mt-20 text-center">
+            <button 
+              onClick={() => {
+                onClose();
+                setTimeout(() => {
+                  const el = document.getElementById('appointment');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+              className="bg-blue-600 text-white px-12 py-5 rounded-full text-xl font-bold hover:bg-blue-700 transition-all shadow-2xl hover:shadow-blue-500/50"
+            >
+              Book Appointment Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeService, setActiveService] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [isAdminView, setIsAdminView] = useState(false);
@@ -1170,7 +1593,7 @@ export default function App() {
                   {service.description}
                 </p>
                 <button 
-                  onClick={() => scrollToSection('appointment')}
+                  onClick={() => setActiveService(service.title)}
                   className="flex items-center gap-2 text-sm font-bold text-blue-600 group-hover:gap-3 transition-all"
                 >
                   Learn more
@@ -1195,7 +1618,8 @@ export default function App() {
               <motion.div 
                 key={i}
                 whileHover={{ y: -10 }}
-                className="relative group rounded-3xl overflow-hidden shadow-lg"
+                className="relative group rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+                onClick={() => setActiveService(item.title)}
               >
                 <img 
                   src={item.image} 
@@ -1205,7 +1629,11 @@ export default function App() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex flex-col justify-end p-8">
                   <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
-                  <p className="text-blue-200 text-sm font-medium">{item.desc}</p>
+                  <p className="text-blue-200 text-sm font-medium mb-4">{item.desc}</p>
+                  <div className="flex items-center gap-2 text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                    Learn more
+                    <ChevronRight size={16} />
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -1706,6 +2134,15 @@ export default function App() {
               </form>
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+      
+      <AnimatePresence>
+        {activeService && (
+          <ServiceDetails 
+            service={SERVICE_DETAILS[activeService]} 
+            onClose={() => setActiveService(null)} 
+          />
         )}
       </AnimatePresence>
 
