@@ -323,7 +323,7 @@ export default function App() {
     
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
-    doc.text('BDS – MIDa, MDS', 105, 51, { align: 'center' });
+    doc.text('BDS – MIDa', 105, 51, { align: 'center' });
     doc.text('Dental Surgeon', 105, 57, { align: 'center' });
 
     // Contact Info Bar
@@ -1070,7 +1070,7 @@ export default function App() {
                 className="relative"
               >
                 <img 
-                  src="https://i.ibb.co/xKzQMp7c/gggggggg-2.png" 
+                  src="https://i.ibb.co/ZtGDPBc/ff4d3e46-9b63-4017-830e-8a6560c08665.png" 
                   alt="Dr. Satyam Kumar" 
                   className="w-full h-auto rounded-[32px] shadow-2xl object-cover"
                   referrerPolicy="no-referrer"
@@ -1095,7 +1095,7 @@ export default function App() {
                 viewport={{ once: true }}
               >
                 <span className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Chief Dentist & Surgeon</span>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Dr. Satyam Kumar (MDS)</h2>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Dr. Satyam Kumar</h2>
                 
                 <div className="space-y-3">
                   <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
@@ -1104,7 +1104,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Qualification</p>
-                      <p className="text-base font-bold text-slate-800">BDS – Buddha Dental Hospital, MDS</p>
+                      <p className="text-base font-bold text-slate-800">BDS – Buddha Dental Hospital</p>
                     </div>
                   </div>
 
