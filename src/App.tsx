@@ -65,7 +65,7 @@ const CLINIC_INFO = {
   timing: "7:00 AM – 10:00 PM",
   rating: 5.0,
   reviewsCount: 775,
-  experience: "15+ Years",
+  experience: "5+ Years",
   patients: "10,000+"
 };
 
@@ -506,17 +506,10 @@ const ServiceDetails = ({ service, onClose }: { service: any; onClose: () => voi
               )}
 
               {service.painCare && (
-                <div className="p-8 bg-orange-50 rounded-[32px] border border-orange-100">
-                  <h3 className="text-xl font-bold text-orange-900 mb-4">Pain & Care</h3>
-                  <ul className="space-y-3">
-                    {service.painCare.map((item: string, i: number) => (
-                      <li key={i} className="flex items-start gap-3 text-orange-800">
-                        <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white p-6 rounded-full shadow-2xl z-20 flex flex-col items-center justify-center w-24 h-24 md:w-32 md:h-32 border-4 border-white">
+  <p className="text-2xl md:text-3xl font-black">5+</p>
+  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-center">Years Exp.</p>
+</div>
               )}
 
               {service.painLevel && (
