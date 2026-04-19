@@ -506,10 +506,17 @@ const ServiceDetails = ({ service, onClose }: { service: any; onClose: () => voi
               )}
 
               {service.painCare && (
-                <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white p-6 rounded-full shadow-2xl z-20 flex flex-col items-center justify-center w-24 h-24 md:w-32 md:h-32 border-4 border-white">
-  <p className="text-2xl md:text-3xl font-black">5+</p>
-  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-center">Years Exp.</p>
-</div>
+                <div className="p-8 bg-orange-50 rounded-[32px] border border-orange-100">
+                  <h3 className="text-xl font-bold text-orange-900 mb-4">Pain & Care</h3>
+                  <ul className="space-y-3">
+                    {service.painCare.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-orange-800">
+                        <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
 
               {service.painLevel && (
@@ -1478,28 +1485,36 @@ export default function App() {
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-[40px] overflow-hidden shadow-xl border border-slate-100 flex flex-col lg:flex-row items-center">
-            <div className="lg:w-1/2 p-6 lg:p-10">
+            <div className="lg:w-1/2 p-6 lg:p-10 flex justify-center">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 className="relative"
               >
-                <img 
-                  src="https://i.ibb.co/ZtGDPBc/ff4d3e46-9b63-4017-830e-8a6560c08665.png" 
-                  alt="Dr. Satyam Kumar" 
-                  className="w-full h-auto rounded-[32px] shadow-2xl object-cover"
-                  referrerPolicy="no-referrer"
-                  loading="eager"
-                  fetchPriority="high"
-                  onError={(e) => {
-                    // Fallback to a high-quality dental professional placeholder if direct link fails
-                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800&h=1000";
-                  }}
-                />
-                <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white p-5 rounded-[24px] shadow-xl hidden md:block">
-                  <p className="text-2xl font-bold">15+</p>
-                  <p className="text-[10px] font-medium opacity-80 uppercase tracking-widest">Years Exp.</p>
+                {/* Decorative Rings */}
+                <div className="absolute inset-0 -m-6 border-2 border-dashed border-blue-200 rounded-full animate-[spin_20s_linear_infinite] opacity-50" />
+                <div className="absolute inset-0 -m-3 border-2 border-blue-100 rounded-full opacity-50" />
+                
+                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl z-10">
+                  <img 
+                    src="https://i.ibb.co/ZtGDPBc/ff4d3e46-9b63-4017-830e-8a6560c08665.png" 
+                    alt="Dr. Satyam Kumar" 
+                    className="w-full h-full object-cover"
+                    style={{ 
+                      imageRendering: 'auto',
+                      filter: 'contrast(1.05) brightness(1.05)'
+                    }}
+                    referrerPolicy="no-referrer"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                </div>
+                
+                {/* Experience Badge */}
+                <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white p-6 rounded-full shadow-2xl z-20 flex flex-col items-center justify-center w-24 h-24 md:w-32 md:h-32 border-4 border-white">
+                  <p className="text-2xl md:text-3xl font-black">5+</p>
+                  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-center">Years Exp.</p>
                 </div>
               </motion.div>
             </div>
